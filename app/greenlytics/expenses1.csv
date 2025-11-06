@@ -1,0 +1,12 @@
+- date: 2025-01-01
+  category: electricity
+  spend: 1200
+- date: 2025-01-02
+  category: travel
+  spend: 450
+- date: 2025-01-03
+  category: food
+  spend: 300
+- date: 2025-01-04
+  category: gas
+  spend: 200

@@ -24,3 +24,67 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+/* ---- AlgoGrass layout & nav ---- */
+.ag-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #ffffff;
+  border-bottom: 1px solid #e7eee9;
+}
+
+.ag-header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.ag-brand {
+  font-weight: 700;
+  text-decoration: none;
+  color: #0b0f0c;
+}
+
+.ag-nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ag-link {
+  padding: 8px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #0b0f0c;
+  border: 1px solid transparent;
+}
+
+.ag-link:hover {
+  background: #f6f9f6;
+  border-color: #e7eee9;
+}
+
+.ag-link--active {
+  background: #eaf5ee;
+  border-color: #cfe5d7;
+}
+
+.ag-container {
+  max-width: 1100px;
+  margin: 24px auto 40px;
+  padding: 0 16px;
+  min-height: 65vh;
+}
+
+.ag-footer {
+  border-top: 1px solid #e7eee9;
+  margin-top: 40px;
+  padding: 16px;
+  text-align: center;
+  color: #42524a;
+  background: #ffffff;
+}

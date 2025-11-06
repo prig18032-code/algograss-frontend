@@ -1,4 +1,4 @@
-﻿// app/features/page.js
+// app/features/page.js
 export const metadata = { title: "Features — AlgoGrass" };
 
 export default function FeaturesPage() {

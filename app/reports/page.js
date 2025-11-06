@@ -1,63 +1,51 @@
 "use client";
 
-import { useRef } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { useRef, useState } from "react";
 
 export default function ReportsPage() {
   const ref = useRef(null);
+  const [saving, setSaving] = useState(false);
 
-  async function downloadPDF() {
-    const el = ref.current;
-    if (!el) return;
-    const canvas = await html2canvas(el, { scale: 2, backgroundColor: "#ffffff" });
-    const imgData = canvas.toDataURL("image/png");
-    const pdf = new jsPDF({ unit: "pt", format: "a4" });
-    const pageWidth = pdf.internal.pageSize.getWidth();
-    const pageHeight = pdf.internal.pageSize.getHeight();
-    const ratio = Math.min(pageWidth / canvas.width, pageHeight / canvas.height);
-    const imgW = canvas.width * ratio;
-    const imgH = canvas.height * ratio;
-    const x = (pageWidth - imgW) / 2;
-    const y = 20;
-    pdf.addImage(imgData, "PNG", x, y, imgW, imgH);
-    pdf.save("algograss-report.pdf");
+  async function exportPDF() {
+    if (!ref.current) return;
+    setSaving(true);
+    try {
+      const canvas = await html2canvas(ref.current, { scale: 2 });
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF({ orientation: "p", unit: "pt", format: "a4" });
+      const pageW = pdf.internal.pageSize.getWidth();
+      const pageH = pdf.internal.pageSize.getHeight();
+      const ratio = Math.min(pageW / canvas.width, pageH / canvas.height);
+      const imgW = canvas.width * ratio;
+      const imgH = canvas.height * ratio;
+      const x = (pageW - imgW) / 2;
+      const y = 24;
+
+      pdf.text("AlgoGrass Report Snapshot", 24, 24);
+      pdf.addImage(imgData, "PNG", x, y + 10, imgW, imgH);
+      pdf.save("algograss_report.pdf");
+    } finally {
+      setSaving(false);
+    }
   }
 
   return (
-    <div style={{ display: "grid", gap: 16 }}>
-      <h2 style={{ marginTop: 0 }}>Reports — Export to PDF</h2>
-      <p>Snapshot the content below into a nicely formatted PDF.</p>
-
-      <div
-        ref={ref}
-        style={{
-          border: "1px solid #e7eee9",
-          borderRadius: 12,
-          padding: 16,
-          background: "#fff",
-        }}
-      >
-        <h3 style={{ marginTop: 0 }}>AlgoGrass — Executive Summary</h3>
-        <p>
-          This is a placeholder. In v2 we will render the latest KPIs from RetailIQ and Greenlytics
-          and include charts and commentary.
-        </p>
+    <div style={{ display: "grid", gap: 12 }}>
+      <h2 style={{ marginTop: 0 }}>Reports — Export PDF</h2>
+      <p>Click Export to save a PDF snapshot of this page’s content.</p>
+      <div ref={ref} className="card">
+        <h3 style={{ marginTop: 0 }}>Snapshot Content</h3>
         <ul>
-          <li>RetailIQ: Sales trending moderately upwards.</li>
-          <li>Greenlytics: Emissions concentrated in Electricity and Materials.</li>
+          <li>Business: <b>AlgoGrass</b></li>
+          <li>Date: {new Date().toISOString().slice(0,10)}</li>
+          <li>Summary: Sales & ESG summaries will be added here (v2).</li>
         </ul>
-        <div style={{ opacity: 0.7, fontSize: 12, marginTop: 12 }}>
-          © {new Date().getFullYear()} AlgoGrass Ltd
-        </div>
       </div>
-
       <div>
-        <button
-          onClick={downloadPDF}
-          style={{ padding: "10px 14px", borderRadius: 8, border: "1px solid #cdd5ce" }}
-        >
-          Download PDF
+        <button onClick={exportPDF} disabled={saving} style={{ padding: "8px 12px", borderRadius: 8, border: "1px solid #cdd5ce" }}>
+          {saving ? "Exporting..." : "Export PDF"}
         </button>
       </div>
     </div>

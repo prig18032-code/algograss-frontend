@@ -1,0 +1,117 @@
+/* app/globals.css  — plain CSS, no Tailwind */
+
+:root {
+  --ag-green: #15803d;
+  --ag-green-2: #4b8f5c;
+  --ag-text: #0b0f0c;
+  --ag-bg: #ffffff;
+  --ag-bg-2: #f6f9f6;
+  --ag-border: #e7eee9;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  height: 100%;
+  margin: 0;
+  color: var(--ag-text);
+  background: var(--ag-bg);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+a { color: var(--ag-green); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.header {
+  border-bottom: 1px solid var(--ag-border);
+  background: #fff;
+}
+.header-inner {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 0;
+}
+.brand { font-size: 24px; font-weight: 700; color: var(--ag-text); }
+
+.nav {
+  display: flex; gap: 18px; align-items: center;
+}
+.nav a {
+  color: var(--ag-text);
+  opacity: 0.85;
+}
+.nav a:hover { opacity: 1; }
+
+.hero {
+  margin-top: 24px;
+  padding: 28px;
+  background: var(--ag-bg-2);
+  border: 1px solid var(--ag-border);
+  border-radius: 12px;
+}
+.hero h1 { margin: 0 0 8px; font-size: 36px; color: var(--ag-green); }
+.hero p { margin: 0 0 16px; color: #4a4f4a; }
+
+.cta-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--ag-border);
+  background: #fff;
+}
+.btn-primary {
+  background: var(--ag-green);
+  color: #fff;
+  border-color: var(--ag-green);
+}
+.btn:hover { filter: brightness(0.98); }
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 14px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--ag-border);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+.kpi {
+  background: var(--ag-bg-2);
+  border: 1px solid var(--ag-border);
+  border-radius: 10px;
+  padding: 12px;
+}
+.kpi .label { opacity: 0.75; font-size: 12px; }
+.kpi .value { font-size: 20px; font-weight: 600; }
+
+.table-shell {
+  overflow: auto;
+  border: 1px solid var(--ag-border);
+  border-radius: 10px;
+}
+table { width: 100%; border-collapse: collapse; }
+thead tr { background: var(--ag-bg-2); }
+th, td { border-bottom: 1px solid #eef3f0; padding: 8px; }
+th { text-align: left; }
+
+.footer {
+  border-top: 1px solid var(--ag-border);
+  margin-top: 40px;
+  padding: 14px 0;
+  color: #6a6f6a;
+  background: #fff;
+  font-size: 14px;
+}
