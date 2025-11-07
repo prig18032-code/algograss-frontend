@@ -23,6 +23,8 @@ export default function Nav() {
       <NavLink href="/features">Features</NavLink>
       <NavLink href="/demo">Demo</NavLink>
       <NavLink href="/contact">Contact</NavLink>
+      <NavLink href="/waitlist">Waitlist</NavLink>
+
     </nav>
   );
 }
